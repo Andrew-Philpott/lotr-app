@@ -1,7 +1,7 @@
-import { characterConstants } from "../constants";
-import { characterService } from "../services";
-import { alertActions } from ".";
-import { history } from "../helpers";
+import { characterConstants } from "../constants/character-constants";
+import { characterService } from "../services/character-service";
+import { alertActions } from "./alert-actions";
+import { history } from "../helpers/history";
 
 export const characterActions = {
   getCharacter,
@@ -60,7 +60,7 @@ function createCharacter(character) {
     characterService.createCharacter(character).then(
       (character) => {
         dispatch(success());
-        history.push("/characters");
+        history.push("/");
         dispatch(alertActions.success("character created"));
       },
       (error) => {
@@ -87,7 +87,7 @@ function updateCharacter(id, character) {
     characterService.updateCharacter(id, character).then(
       (character) => {
         dispatch(success(character));
-        history.push("/ontap");
+        history.push("/");
         dispatch(alertActions.success("character updated"));
       },
       (error) => {

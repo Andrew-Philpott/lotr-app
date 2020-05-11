@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { characterActions } from "../../actions/character-actions";
+import { characterActions } from "../actions/character-actions";
+import { useParams } from "react-router-dom";
 
 export const CharacterEdit = () => {
   const { id } = useParams();
@@ -19,6 +20,8 @@ export const CharacterEdit = () => {
       team: event.target.team.value,
       health: parseInt(event.target.health.value),
       attack: parseInt(event.target.attack.value),
+      armor: parseInt(event.target.armor.value),
+      magic: parseInt(event.target.magic.value),
     };
     dispatch(characterActions.updateCharacter(id, character));
   }
@@ -26,9 +29,7 @@ export const CharacterEdit = () => {
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className={classes.label} htmlFor="name">
-            Name:
-          </label>
+          <label htmlFor="name">Name:</label>
           <input
             defaultValue={character.name}
             id="name"
@@ -39,9 +40,19 @@ export const CharacterEdit = () => {
         </div>
 
         <div className="form-group">
-          <label className={classes.label} htmlFor="team">
-            Team:
-          </label>
+          <label htmlFor="description">Description:</label>
+          <input
+            value={character.description}
+            onChange={handleChange}
+            id="description"
+            type="text"
+            name="description"
+            className={"form-control"}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="team">Team:</label>
           <input
             defaultValue={character.team}
             id="team"
@@ -52,9 +63,7 @@ export const CharacterEdit = () => {
         </div>
 
         <div className="form-group">
-          <label className={classes.label} htmlFor="health">
-            Health:
-          </label>
+          <label htmlFor="health">Health:</label>
           <input
             defaultValue={character.health}
             id="health"
@@ -65,22 +74,44 @@ export const CharacterEdit = () => {
         </div>
 
         <div className="form-group">
-          <label className={classes.label} htmlFor="attack">
-            Attack:
-          </label>
+          <label htmlFor="armor">Armor:</label>
           <input
-            defaultValue={beer.attack}
+            value={character.armor}
+            onChange={handleChange}
+            id="armor"
+            type="text"
+            name="armor"
+            className={"form-control"}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="attack">Attack:</label>
+          <input
+            defaultValue={character.attack}
             id="attack"
             type="text"
             name="attack"
             className={"form-control"}
           />
         </div>
-        <button type="submit">Add Beer</button>
+
+        <div className="form-group">
+          <label htmlFor="magic">Magic:</label>
+          <input
+            value={character.magic}
+            onChange={handleChange}
+            id="magic"
+            type="text"
+            name="magic"
+            className={"form-control"}
+          />
+        </div>
+        <button type="submit">Edit Character</button>
       </form>
     );
   } else {
-    return <h1>Loading...</h1>;
+    return <div></div>;
   }
 };
 export default CharacterEdit;

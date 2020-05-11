@@ -66,3 +66,22 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Stuff to add
+
+- turn based rpg
+- can create new characters
+- can add characters to a users team
+- Pig dice mechanic for damage
+- Players can play against other players
+- Characters attributes
+  - Battle Mechaninic attributes
+  - hp
+  - armor
+  - base attack
+  - base magic
+  - Other attritbutes
+  - name
+  - description
+  - etc
+- Pig dice Ai ?

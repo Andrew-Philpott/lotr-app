@@ -1,4 +1,4 @@
-import { characterConstants } from "../constants";
+import { characterConstants } from "../constants/character-constants";
 
 export function characters(state = {}, action) {
   switch (action.type) {
