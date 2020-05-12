@@ -33,8 +33,11 @@ function CharacterBoard(props) {
           display: "flex",
           flexDirection: "column",
           backgroundColor: "#313131",
+          border: "2px solid #896f4c",
           width: "100%",
           height: "100%",
+          backgroundImage:
+            "https://www.syfy.com/sites/syfy/files/styles/1200x680_hero/public/wire/legacy/LOTR.png",
         }}
         id={props.id}
         className={props.className}

@@ -7,16 +7,18 @@ function Board(props) {
         flexDirection: "column",
         width: "100%",
         height: "100vh",
-        borderRight: "2px solid white",
         backgroundColor: "#313131",
+        borderLeft: "4px solid #72593d",
+        borderTop: "4px solid #72593d",
       }
     : {
         display: "flex",
         flexDirection: "column",
         width: "100%",
         height: "100vh",
-        borderLeft: "2px solid white",
         backgroundColor: "#313131",
+        borderRight: "4px solid #72593d",
+        borderTop: "4px solid #72593d",
       };
   const drop = (e) => {
     e.preventDefault();

@@ -10,7 +10,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { Link } from "react-router-dom";
 import Dice from "./Dice";
 import CharacterBoard from "../components/CharacterBoard";
-
+import { Header } from "../components/Header";
 export const CharacterList = () => {
   const characters = useSelector((state) => state.characters);
   const dispatch = useDispatch();
@@ -33,7 +33,9 @@ export const CharacterList = () => {
         }}
       >
         <Board isLeft={true} id={`board-1`}>
-          <h1>Good</h1>
+          <br></br>
+          <br></br>
+          <h1 style={{ color: "#72593d" }}>Good</h1>
           {characters.items &&
             characters.items
               .filter(
@@ -77,39 +79,27 @@ export const CharacterList = () => {
           height: "100%",
         }}
       >
+        <Header></Header>
+        <div style={{ width: "100%", height: "5vh" }}></div>
         <div
           style={{
             textAlign: "center",
             width: "100%",
-            height: "50vh",
+            height: "40vh",
           }}
         >
-          {/* <h1>Lord of the Things</h1> */}
           <div
             style={{
               textAlign: "center",
               width: "100%",
-              height: "40%",
+              height: "20vh",
             }}
           >
-            {/* <div
-              style={{
-                textAlign: "center",
-                width: "40%",
-                height: "100%",
-
-                float: "left",
-              }}
-            >
-              <p>Shtickity Stats Yo</p>
-            </div> */}
             <div
               style={{
                 textAlign: "center",
                 width: "100%",
                 height: "100%",
-                borderBottom: "4px solid white",
-                float: "right",
               }}
             >
               <CharacterBoard id={`board-3`}></CharacterBoard>
@@ -119,42 +109,22 @@ export const CharacterList = () => {
             style={{
               textAlign: "center",
               width: "100%",
-              height: "40%",
+              height: "20vh",
             }}
           >
-            {/* <div
-              style={{
-                textAlign: "center",
-                width: "40%",
-                height: "100%",
-
-                float: "left",
-              }}
-            >
-              <p>Shtickity Stats Yo</p>
-            </div> */}
             <div
               style={{
                 textAlign: "center",
                 width: "100%",
                 height: "100%",
-                float: "right",
               }}
             >
               <CharacterBoard id={`board-4`}></CharacterBoard>
             </div>
           </div>
         </div>
-        <div
-          style={{
-            textAlign: "center",
-            width: "100%",
-            height: "40vh",
-          }}
-        >
-          <h1>Dice area</h1>
-          <Dice />
-        </div>
+
+        <Dice />
       </div>
       <div
         style={{
@@ -164,6 +134,8 @@ export const CharacterList = () => {
         }}
       >
         <Board isLeft={false} id={`board-2`}>
+          <br></br>
+          <br></br>
           <h1>Evil</h1>
           {characters.items &&
             characters.items

@@ -21,9 +21,8 @@ function App() {
   }, []);
 
   return (
-    <div className="App" style={{ height: "100%" }}>
+    <div className="App" style={{ height: "100%", fontSize: "12px" }}>
       <Router history={history}>
-        <Header></Header>
         <Switch>
           <Route exact path={c.NEW_CHARACTER} component={CharacterNew} />
           <Route

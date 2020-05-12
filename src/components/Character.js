@@ -23,8 +23,8 @@ function Character(props) {
   return (
     <div
       style={{
-        padding: "15px 25px",
-        margin: "10px",
+        padding: "15px 15px",
+        margin: "20px",
         backgroundColor: "#F3F3F3",
       }}
       id={props.id}
