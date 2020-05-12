@@ -1,6 +1,23 @@
 import React from "react";
 
 function Board(props) {
+  const border = props.isLeft
+    ? {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        height: "100vh",
+        borderRight: "2px solid white",
+        backgroundColor: "#313131",
+      }
+    : {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        height: "100vh",
+        borderLeft: "2px solid white",
+        backgroundColor: "#313131",
+      };
   const drop = (e) => {
     e.preventDefault();
     const character_id = e.dataTransfer.getData("character_id");
@@ -18,14 +35,7 @@ function Board(props) {
 
   return (
     <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        height: "100vh",
-        backgroundColor: "#313131",
-        padding: "15px",
-      }}
+      style={border}
       id={props.id}
       className={props.className}
       onDrop={drop}

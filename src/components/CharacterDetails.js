@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { characterActions } from "../actions/character-actions";
-import { useParams } from "react-router-dom";
 
-export const CharacterDetails = () => {
-  const { id } = useParams();
+export const CharacterDetails = (props) => {
   const character = useSelector((state) => state.characters.item);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(characterActions.getCharacter(parseInt(id)));
+    dispatch(characterActions.getCharacter(parseInt(props.id)));
   }, []);
 
   if (character) {

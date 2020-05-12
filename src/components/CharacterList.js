@@ -8,6 +8,9 @@ import EditIcon from "@material-ui/icons/Edit";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Link } from "react-router-dom";
+import Dice from "./Dice";
+import CharacterBoard from "../components/CharacterBoard";
+
 export const CharacterList = () => {
   const characters = useSelector((state) => state.characters);
   const dispatch = useDispatch();
@@ -27,13 +30,10 @@ export const CharacterList = () => {
           textAlign: "center",
           width: "20%",
           height: "100vh",
-          border: "2px solid red",
         }}
       >
-        <br />
-        <h1>Good</h1>
-        <br />
-        <Board id={`board-1`}>
+        <Board isLeft={true} id={`board-1`}>
+          <h1>Good</h1>
           {characters.items &&
             characters.items
               .filter(
@@ -46,6 +46,7 @@ export const CharacterList = () => {
                 <Character
                   style={{ maxHeight: "50px" }}
                   draggable="true"
+                  character={character}
                   id={`character-` + character.id}
                 >
                   <h3>{character.name}</h3>
@@ -65,7 +66,6 @@ export const CharacterList = () => {
                   <DeleteIcon
                     onClick={() => onDelete(character.id)}
                   ></DeleteIcon>
-                  <br />
                 </Character>
               ))}
         </Board>
@@ -75,46 +75,85 @@ export const CharacterList = () => {
           textAlign: "center",
           width: "60%",
           height: "100%",
-          border: "1px solid blue",
         }}
       >
         <div
           style={{
             textAlign: "center",
             width: "100%",
-            height: "50%",
+            height: "50vh",
           }}
         >
-          <h1>Lord of the Things</h1>
+          {/* <h1>Lord of the Things</h1> */}
           <div
             style={{
               textAlign: "center",
               width: "100%",
               height: "40%",
-              border: "1px solid green",
             }}
           >
-            Character 1
+            {/* <div
+              style={{
+                textAlign: "center",
+                width: "40%",
+                height: "100%",
+
+                float: "left",
+              }}
+            >
+              <p>Shtickity Stats Yo</p>
+            </div> */}
+            <div
+              style={{
+                textAlign: "center",
+                width: "100%",
+                height: "100%",
+                borderBottom: "4px solid white",
+                float: "right",
+              }}
+            >
+              <CharacterBoard id={`board-3`}></CharacterBoard>
+            </div>
           </div>
           <div
             style={{
               textAlign: "center",
               width: "100%",
               height: "40%",
-              border: "1px solid green",
             }}
           >
-            Character 2
+            {/* <div
+              style={{
+                textAlign: "center",
+                width: "40%",
+                height: "100%",
+
+                float: "left",
+              }}
+            >
+              <p>Shtickity Stats Yo</p>
+            </div> */}
+            <div
+              style={{
+                textAlign: "center",
+                width: "100%",
+                height: "100%",
+                float: "right",
+              }}
+            >
+              <CharacterBoard id={`board-4`}></CharacterBoard>
+            </div>
           </div>
         </div>
         <div
           style={{
             textAlign: "center",
             width: "100%",
-            height: "50%",
+            height: "40vh",
           }}
         >
           <h1>Dice area</h1>
+          <Dice />
         </div>
       </div>
       <div
@@ -122,13 +161,10 @@ export const CharacterList = () => {
           textAlign: "center",
           width: "20%",
           height: "100%",
-          border: "1px solid red",
         }}
       >
-        <br />
-        <h1>Evil</h1>
-        <br />
-        <Board id={`board-2`}>
+        <Board isLeft={false} id={`board-2`}>
+          <h1>Evil</h1>
           {characters.items &&
             characters.items
               .filter(
@@ -141,6 +177,7 @@ export const CharacterList = () => {
                 <Character
                   style={{ maxHeight: "50px" }}
                   draggable="true"
+                  character={character}
                   id={`character-` + character.id}
                 >
                   <h3>{character.name}</h3>
@@ -160,7 +197,6 @@ export const CharacterList = () => {
                   <DeleteIcon
                     onClick={() => onDelete(character.id)}
                   ></DeleteIcon>
-                  <br />
                 </Character>
               ))}
         </Board>
