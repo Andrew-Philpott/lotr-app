@@ -3,8 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { characterActions } from "../actions/character-actions";
 import { useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
 
-function Dice() {
+function Dice(props) {
+  const { team } = props;
+  console.log(team);
+  console.log("dice props", props);
+  console.log("player 1: " + player1);
+  console.log("player 2: " + player2);
+
+  const [player1, setPlayer1] = useState(null);
+  const [player2, setPlayer2] = useState(null);
+  // is where are the ids for the player in characterlist?/
   const [roll, setRoll] = useState(0);
   const [damageCounter, setDamageCounter] = useState(0);
   const [turn, switchTurn] = useState(true);
@@ -12,26 +22,28 @@ function Dice() {
   const [healthP1, setHealthP1] = useState(25);
   const [healthP2, setHealthP2] = useState(25);
 
-  //Code I took from character details
-  const { id } = useParams(id);
-  const character = useSelector((state) => state.characters.item);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(characterActions.getCharacter(parseInt(id)));
-  }, []);
-
   // code to build out mechaninc to switch which is current player and current enemy
-  // const [currentplayer, switchplayer] = useState(player1);
+  const [currentplayer, switchplayer] = useState(player1);
 
   const currentenemyarmor = 3;
   const enemyMagic = 10;
   const playerMagic = 10;
   const currentplayerattack = 10;
 
+  // if (props.goodPlayer == "Good") {
+  //   setPlayer1(props.goodPlayer);
+  //   // props.setCharacter();
+  //   // console.log("character2",{character2});
+  // } else if (props.badPlayer == "Bad") {
+  //   setPlayer2(props.badPlayer);
+  //   // props.setCharacter();
+  // }
+
+  //
+
   // replace playerMagic and enemyMagic
 
-  const MagicAdd = () => {
+  const MagicRoll = () => {
     const min = 1;
     const max = playerMagic;
     const roll = Math.floor(Math.random() * (max - min) + min);
@@ -46,6 +58,7 @@ function Dice() {
   };
 
   const attack = () => {
+    console.log(player1.health);
     if (turn === false) {
       setHealthP1(healthP1 - damageCounter);
     } else {
@@ -55,11 +68,20 @@ function Dice() {
     setDamageCounter(0);
   };
 
+  const newGame = () => {
+    setRoll(0);
+    setDamageCounter(0);
+    switchTurn(!turn);
+    setHealthP1(25);
+    setHealthP2(25);
+  };
+
   const changeTurn = () => {
     switchTurn(!turn);
   };
 
-  const add = () => {
+  const Roll = () => {
+    console.log("props", props);
     const min = 1;
     const max = currentplayerattack;
     const currentRoll = Math.floor(Math.random() * (max - min) + min);
@@ -113,10 +135,16 @@ function Dice() {
   };
 
   const showButtons = () => {
-    if (playerMagic === 0) {
+    if (healthP1 <= 0 || healthP2 <= 0) {
+      return (
+        <Button style={{ backgroundColor: "white" }} onClick={() => newGame()}>
+          New Game
+        </Button>
+      );
+    } else if (playerMagic === 0) {
       return (
         <>
-          <Button style={{ backgroundColor: "white" }} onClick={() => add()}>
+          <Button style={{ backgroundColor: "white" }} onClick={() => Roll()}>
             Attack Roll
           </Button>
           <br />
@@ -128,18 +156,37 @@ function Dice() {
     } else {
       return (
         <>
-          <Button style={{ backgroundColor: "white" }} onClick={() => add()}>
+          <Button
+            style={{
+              backgroundColor: "white",
+              minWidth: "120px",
+              marginBottom: "10px",
+              marginTop: "10px",
+            }}
+            onClick={() => Roll()}
+          >
             Attack Roll
           </Button>
+          <br />
           <Button
-            style={{ backgroundColor: "white" }}
-            onClick={() => MagicAdd()}
+            style={{
+              backgroundColor: "white",
+              minWidth: "120px",
+              marginBottom: "10px",
+            }}
+            onClick={() => MagicRoll()}
           >
             Magic Roll
           </Button>
           <br />
-          <br />
-          <Button style={{ backgroundColor: "white" }} onClick={() => attack()}>
+          <Button
+            style={{
+              backgroundColor: "white",
+              minWidth: "120px",
+              marginBottom: "10px",
+            }}
+            onClick={() => attack()}
+          >
             Hit Them!
           </Button>
         </>
@@ -152,6 +199,7 @@ function Dice() {
       <div
         style={{
           width: "100%",
+          height: "40vh",
           backgroundImage: `url(${"https://media.contentapi.ea.com/content/dam/gin/images/2017/01/lotr-the-battle-for-middle-earth-keyart-min.jpg.adapt.crop191x100.628p.jpg"})`,
         }}
       >
@@ -159,18 +207,17 @@ function Dice() {
           <p>{showButtons()}</p>
         </div>
         <div style={{ width: "80%", height: "20%", float: "right" }}></div>
-
-        <p>{showTurn()}</p>
-        <p>{showStats()}</p>
-        {/* <p> Roll: {roll}</p>
-        <p>DamageCounter: {damageCounter}</p>
-        <p>healthP1: {healthP1}</p>
-        <p>healthP2: {healthP2}</p> */}
-
-        {/* <p>{character.name}</p> */}
+        <div>
+          {player1 && <h1>{player1.health}</h1>}
+          {player2 && <h1>{player2.health}</h1>}
+        </div>
       </div>
     </React.Fragment>
   );
 }
+
+Dice.propTypes = {
+  player: PropTypes.object,
+};
 
 export default Dice;

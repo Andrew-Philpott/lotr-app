@@ -5,8 +5,9 @@ function Board(props) {
     ? {
         display: "flex",
         flexDirection: "column",
-        width: "100%",
+        width: "20%",
         height: "100vh",
+        textAlign: "center",
         backgroundColor: "#313131",
         borderLeft: "4px solid #72593d",
         borderTop: "4px solid #72593d",
@@ -14,8 +15,9 @@ function Board(props) {
     : {
         display: "flex",
         flexDirection: "column",
-        width: "100%",
+        width: "20%",
         height: "100vh",
+        textAlign: "center",
         backgroundColor: "#313131",
         borderRight: "4px solid #72593d",
         borderTop: "4px solid #72593d",

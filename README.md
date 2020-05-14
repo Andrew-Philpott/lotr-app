@@ -85,3 +85,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
   - description
   - etc
 - Pig dice Ai ?
+
+Component Tree 
+               Dice - B
+                    -
+                    - 
+                    -
+                    -
+                    -
